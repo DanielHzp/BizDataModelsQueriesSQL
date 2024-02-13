@@ -1,0 +1,41 @@
+BEGIN --PR: Tabla (process entity) purchase requisition con todos los casos CERRADOS
+
+select		purchaserequisition.requestdate as RequestDate,purchaserequisition.RadNumber as CaseNumber,wiEntryDate, 
+		purchasetype.Name as PurchaseType, BlanketPOCategory.Name as PurchaseCategory,
+		PurchaseRequisition.bRampCardUsed as IsRampPurchase,
+		legalterms.Name as LegalTermsName,
+		companyeu.Name as CompanyEU,BizagiCorpCompany.Name as BizagiCorpCompany,--purchaserequisition.kmContractDetails,
+		wfuser.userName as 'PurchaseCreator',
+		task.tskDisplayName,
+		workflow.wfVersion, workflow.wfActive,
+		RequisitionValue,
+		invoiceuploader,purchaser,purchaserequisition.OtherUser,itmanager,
+		purchaserequisition.company,
+		task.tskDuration,* 
+
+from		PurchaseRequisition left join wfcase on wfcase.idcase=purchaserequisition.idCase
+		left join purchasetype on purchasetype.idpurchasetype=purchaserequisition.PurchaseType
+		left join companyeu on companyeu.idcompanyeu=purchaserequisition.Company
+		left join BizagiCorpCompany on BizagiCorpCompany.idBizagiCorpCompany=PurchaseRequisition.BizagiCorpCompany
+		left join legalterms on legalterms.idlegalterms=purchaserequisition.LegalTerms
+		left join BlanketPOCategory on purchaserequisition.PurchaseCategory=BlanketPOCategory.idBlanketPOCategory
+		left join workitem on workitem.idcase=wfcase.idCase
+		left join task on task.idtask=workitem.idtask
+		--left join employee on employee.idEmployee=purchaserequisition.purchaser
+		left join wfuser on wfuser.iduser=purchaserequisition.OtherUser
+		left join workflow on wfcase.idWorkflow=workflow.idWorkflow
+		left join WFCLASS on wfclass.idWfClass=WORKFLOW.idWFClass
+
+--Atributo CaseTotalDays deja de ser nulo solamente cuando el proceso pasa por los eventos terminales: PO subprocess y Confirm invoice received
+where		PurchaseRequisition.CaseTotalDays is not null
+		--task.tskDisplayName like '%End%' --and task.tskName like '%Event%'
+		and workflow.wfVersion='2.6'
+		and task.tskDisplayName like'%Modify Purchase Information%'
+		--and 
+		--and BizagiCorpCompany.Name like '% .... %'
+		--and companyeu.Name is null--and purchaserequisition.radnumber='CO- ... '--and task.tskDisplayName like '%purchase order%'
+
+order by 	purchaserequisition.requestdate desc
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+END

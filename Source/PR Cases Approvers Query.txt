@@ -1,0 +1,30 @@
+
+
+select	
+		purchaserequisition.RadNumber,purchaserequisition.Purchaser,purchaserequisition.OtherUser,wfuser.fullName as 'Case Requester',
+		purchaserequisition.ReportingForOtherUser,
+		approvalindex as 'Approval Index', purchaserequisition.RequestDate,
+		wfApprover.fullName as 'Approver name', purchaseapprover.Approver,
+		wfApprover.enabled as 'Enabled?',
+		wfApprover.idBossUser as 'Approver boss',
+		purchaserequisition.RequisitionValue,
+		purchaserequisition.IsthisaMarketingpurcha,
+		wfApprover.idPurchaseapprovallevel,Purchaseapprovallevel.Code,
+		purchaseapprovalranges.Maxamount,PurchaseApprovalRanges.Code,expensecurrency.Symbol,*  --workitem.wiEntryDate,workitem.wiSolutionDate,-- * 
+from 
+	Purchaseapprover left join WFUSER wfApprover on wfApprover.idUser=Purchaseapprover.Approver 
+	left join PurchaseRequisition on purchaserequisition.idPurchaseRequisition=Purchaseapprover.PurchaseRequisition
+	left join Purchaseapprovallevel on Purchaseapprovallevel.idPurchaseapprovallevel=wfApprover.idPurchaseapprovallevel 
+	left join PurchaseApprovalRanges on PurchaseApprovalRanges.Purchaseapprovallevel=wfApprover.idPurchaseapprovallevel
+	left join WFUSER on purchaserequisition.OtherUser=wfuser.idUser
+	left join wfcase on wfcase.idcase=purchaserequisition.idCase
+	left join workflow on wfcase.idWorkflow=workflow.idWorkflow
+	left join ExpenseCurrency on purchaserequisition.RequisitionCurrency=expensecurrency.idExpenseCurrency
+	--left join workitem on workitem.idcase=wfcase.idCase
+	--left join workitemstate on workitem.idworkitemstate=workitemstate.idworkitemstate
+
+where PurchaseApprovalRanges.Code like'%USD%' 
+order by  purchaserequisition.RequestDate DESC--, Purchaseapprover.ApprovalIndex ASC
+
+--wfuser.fullname like '%%' --purchaserequisition.RadNumber='CO-213' and PurchaseApprovalRanges.Code like '%USD%'
+
