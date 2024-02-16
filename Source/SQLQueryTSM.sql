@@ -9,6 +9,8 @@ select * from mTrainingSessionMng
 --Collection entity where training session students are loaded
 select * from mAttendee
 
+select * from mSessionModules where sCaseNumber='TSM372'
+
 --Collection entity where moddle web service writes student prerequisites progress   xMoodlePrerequisites
 select * from mMoodlePrerequisites where scaseNumber like '%TSM180%' and bIsInstructorLed='true' --and bInstructorLedAttended='true' 
 
@@ -22,6 +24,8 @@ select * from pTSMCaseStatus
 
 --Student CRM Training History
 select * from mTSMStudentHistory
+
+
 
 select * from mInstructorledHist where sCorporateEmail like '%juankberni@gmail.com%'
 
@@ -52,6 +56,7 @@ select * from TrainingCourse
 --Proess entity data sync process
 select * from mTSMXpressDataSync
 
+select * from mNewStudentHistory;
 
 
 
