@@ -50,7 +50,7 @@ select * from pXpressAttendeesREP where creatorName not like '%elearning%'
 
 select * from TrainingCourseInstan WHERE sXpressBusinessKey=15856
 
-select * from TrainingCourse
+ 
 
 
 --Proess entity data sync process
