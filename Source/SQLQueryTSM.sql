@@ -3,6 +3,9 @@
 --TSM process entity
 select * from mTrainingRequest
 
+--TSM Training type parameter entity
+select * from mTrainingType
+
 --Business entity of TSM
 select * from mTrainingSessionMng
 
@@ -17,17 +20,22 @@ select * from mMoodlePrerequisites where scaseNumber like '%TSM180%' and bIsInst
 --Collection of training prerequisites of each course or workshop
 select * from pTSMPrerequisites
 
+--TSM training language parameter entity
 select * from TCM_Language
 
+--TSM case status parameter entity
 select * from pTSMCaseStatus
 
 
 --Student CRM Training History
 select * from mTSMStudentHistory
 
-
-
 select * from mInstructorledHist where sCorporateEmail like '%juankberni@gmail.com%'
+
+select * from mCertificatesHistory
+
+
+
 
 --Master entity for attendees companies
 select * from mCompaniesAttendees
@@ -48,7 +56,9 @@ select * from pworkshoptype
 --Xpress replicated entitites
 select * from pXpressAttendeesREP where creatorName not like '%elearning%'
 
-select * from TrainingCourseInstan WHERE sXpressBusinessKey=15856
+select * from TrainingCourseInstan WHERE sXpressBusinessKey=801
+
+select * from TrainingCourse
 
  
 
