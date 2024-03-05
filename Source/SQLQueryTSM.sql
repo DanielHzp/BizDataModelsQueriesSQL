@@ -5,6 +5,7 @@ select * from mTrainingRequest
 
 --TSM Training type parameter entity
 select * from mTrainingType
+select * from pTrainingType
 
 --Business entity of TSM
 select * from mTrainingSessionMng

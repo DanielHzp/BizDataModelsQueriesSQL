@@ -85,7 +85,7 @@ from
 	--left join workitem on workitem.idcase=wfcase.idCase
 	--left join workitemstate on workitem.idworkitemstate=workitemstate.idworkitemstate
 
-where PurchaseApprovalRanges.Code like'%USD%' --wfuser.fullname like '%Stephan%' --purchaserequisition.RadNumber='CO-213' and PurchaseApprovalRanges.Code like '%USD%'
+where PurchaseApprovalRanges.Code like'%USD%' and purchaserequisition.RadNumber='CO-132046' --wfuser.fullname like '%Stephan%' --purchaserequisition.RadNumber='CO-213' and PurchaseApprovalRanges.Code like '%USD%'
 order by  purchaserequisition.RequestDate DESC--, Purchaseapprover.ApprovalIndex ASC
 
 
@@ -119,7 +119,7 @@ from
 	--left join workitem on workitem.idcase=wfcase.idCase
 	--left join workitemstate on workitem.idworkitemstate=workitemstate.idworkitemstate
 
-where PurchaseApprovalRanges.Code like'%USD%' 
+where PurchaseApprovalRanges.Code like'%USD%' and purchaserequisition.RadNumber='CO-132046'
 order by  purchaserequisition.RequestDate DESC--, Purchaseapprover.ApprovalIndex ASC
 
 --wfuser.fullname like '%%' --purchaserequisition.RadNumber='CO-213' and PurchaseApprovalRanges.Code like '%USD%'
