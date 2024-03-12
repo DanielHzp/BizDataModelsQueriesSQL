@@ -36,8 +36,6 @@ select * from mInstructorledHist where sCorporateEmail like '%juankberni@gmail.c
 select * from mCertificatesHistory
 
 
-
-
 --Master entity for attendees companies
 select * from mCompaniesAttendees
 
