@@ -1,3 +1,5 @@
+
+
 select purchaserequisition.IntervaloNochiveApprover,* from PurchaseRequisition where purchaserequisition.IntervaloNochiveApprover is not null
 
 BEGIN --PR: Casos con sus respectivas categorias de HR 
@@ -282,9 +284,17 @@ select * from POtemStatus
 --Search items of purchase requisition invoices subprocess
 select * from blanketPOinvoice
 
+--This parameter entity contains the combo box options that can be selected in task: Approve Purchase Requisition:
+select * from Purchaseapprovaldecision
+
 SELECT * FROM PurchaseRequisitionEmail
+
+
+
 select * from Purchasetype
+
 select * from PurchasePaymentMethod
+
 select * from companyEU
 select * from BizagiCorpCompany
 select * from PurchaseRequisition
