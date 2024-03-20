@@ -31,7 +31,7 @@ select * from pTSMCaseStatus
 --Student CRM Training History
 select * from mTSMStudentHistory
 
-select * from mInstructorledHist where sCorporateEmail like '%juankberni@gmail.com%'
+select * from mInstructorledHist where bCreatedinMyBizagi=1 sCorporateEmail like '%juankberni@gmail.com%'
 
 select * from mCertificatesHistory
 
