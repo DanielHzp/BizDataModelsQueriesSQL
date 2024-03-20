@@ -24,7 +24,7 @@ select * from USERROLE
 select * from ORGPOSITION where posName like '%cloud%'
 select * from skill where skilldisplayname like '%purchase%'
 select * from USERSKILL
-select * from ROLE where roleName like '%ITBO%'
+select * from ROLE where roleName like '%legal%'
 select * from jobtittle where Name like '%analyst%'
 
 
